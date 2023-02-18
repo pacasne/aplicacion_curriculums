@@ -18,7 +18,7 @@ def create_app():
 
     from .views import views
     app.register_blueprint(views,url_prefix = "/")
-    #create_database(app)
+    create_database(app)
     login_manager = LoginManager()
     login_manager.login_view = "views.home"
     login_manager.init_app(app)
@@ -31,6 +31,7 @@ def create_app():
 
 def create_database(app):
     if not path.exists("website/" + DB_NAME):
-        db.create_all(app = app)
-        print("Create database")
+        with app.app_context():
+            db.create_all()
+            print("Create database")
 
