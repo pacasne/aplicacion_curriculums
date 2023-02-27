@@ -1,0 +1,60 @@
+
+
+
+
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block content %}
+    <!-- El método post manda como cabecera a la base de datos los datos que estén en los boxes y demás al pulsar el botón type submit-->
+    <form method="POST"> 
+      <br><br>
+      <h3 aling="center">Añadir nuevo usuario</h3>
+      <div class="form-group">
+        <label for="email1">e-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email1"
+          name="email1"
+          placeholder="Introduce tu e-mail"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="email2">e-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email2"
+          name="email2"
+          placeholder="Repite tu email"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password1"
+          name="password"
+          placeholder="Escribe la contraseña"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          name="password2"
+          placeholder="Repite la contraseña"
+        />
+      </div>
+      <br>
+     
+      <input type="checkbox" id = "administrador" name  = "administrador" />
+				<label for="administrador">Administrador </label>
+      <br /><br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}

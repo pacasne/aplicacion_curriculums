@@ -11,7 +11,13 @@ Empleados_Trabajos = db.Table('Empleados_trabajos',Base.metadata,
     db.Column('id_Trabajos', db.Integer, db.ForeignKey('Trabajos.id'))
 )#esta es la tabla intermedia
 
-class Empleados(db.Model,UserMixin,Base):#db.Model es un método que indica que es una tabla
+class Usuarios(db.Model,UserMixin):
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String(150))
+    password = db.Column(db.String(150))
+    admin = db.Column(db.Boolean)    
+
+class Empleados(db.Model,Base):#db.Model es un método que indica que es una tabla
     id = db.Column(db.Integer,primary_key = True)
     nombre = db.Column(db.String(150))#entre paréntesis va el número de carácteres máximos
     apellido1 = db.Column(db.String(150))
@@ -21,7 +27,6 @@ class Empleados(db.Model,UserMixin,Base):#db.Model es un método que indica que 
     direccion = db.Column(db.String(150))
     ciudad = db.Column(db.String(100))
     email = db.Column(db.String(150))
-    admin = db.Column(db.Boolean)
     trabajos = db.relationship("Trabajos",secondary = Empleados_Trabajos, back_populates = "empleados")# esta columna la creamos para apuntar a la tabla intermedia.
     
 
