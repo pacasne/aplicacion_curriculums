@@ -35,7 +35,7 @@
           type="password"
           class="form-control"
           id="password1"
-          name="password"
+          name="password1"
           placeholder="Escribe la contraseña"
         />
       </div>
@@ -56,5 +56,11 @@
 				<label for="administrador">Administrador </label>
       <br /><br>
       <button type="submit" class="btn btn-primary">Submit</button>
+      {% if  resultado %}
+      <br><br>
+      <h1>El usuario ha sido registrado correctamente</h1>
+      {% else %}
+      <h1>Ha habido un problema y el usuario no ha sido registrado</h1>
+      {% endif %}
     </form>
     {% endblock %}
