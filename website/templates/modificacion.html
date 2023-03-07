@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %}Modifiy email{% endblock %} {% block content %}
+    <!-- El método post manda como cabecera a la base de datos los datos que estén en los boxes y demás al pulsar el botón type submit-->
+    <form method="POST"> 
+      <br><br>
+      <h3 aling="center">Modificar correo electrónico de usuario</h3>
+      <div class="form-group">
+        <label for="old_email">Antiguo e-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          id="old_email"
+          name="old_email"
+          placeholder="Introduce tu e-mail"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="new_email1">Nuevo e-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          id="new_email1"
+          name="new_email1"
+          placeholder="Introduce el nuevo e-mail"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="new_email2">Nuevo email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="new_email2"
+          name="new_email2"
+          placeholder="Repite tu nuevo email"
+        />
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Introduce tu contraseña"
+        />
+      </div>
+      <br>
+      <br /><br>
+      <button type="submit" class="btn btn-primary">Modificar</button>
+      {% if  resultado %}
+      <br><br>
+      <h1>El correo ha sido registrado correctamente</h1>
+      {% else %}
+      <h1>Ha habido un problema y el correo no ha sido modificado</h1>
+      {% endif %}
+    </form>
+    {% endblock %}

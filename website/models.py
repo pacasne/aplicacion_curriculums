@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
+
 #empleado1.trabajos.append(trabajo1)
 #trabajo1.empleados.append(empleados1)
 Empleados_Trabajos = db.Table('Empleados_trabajos',Base.metadata,
@@ -30,18 +31,6 @@ class Empleados(db.Model,Base):#db.Model es un método que indica que es una tab
     trabajos = db.relationship("Trabajos",secondary = Empleados_Trabajos, back_populates = "empleados")# esta columna la creamos para apuntar a la tabla intermedia.
     
 
-class Trabajos(db.Model,Base):
-    id = db.Column(db.Integer,primary_key = True)
-    nombre_trabajo = db.Column(db.String(400))
-    localizacion = db.Column(db.String(150))
-    id_tipologia = db.Column(db.Integer, db.ForeignKey('Tipologias.id'))
-    id_tematica = db.Column(db.Integer, db.ForeignKey('Tematicas.id'))
-    id_cliente = db.Column(db.Integer, db.ForeignKey('Clientes.id'))
-    fecha_inicio = db.Column(db.DateTime(timezone = True),default = func.now())#para que no pete que ponga la actual
-    fecha_final =  db.Column(db.DateTime(timezone = True),default = func.now())
-    empleados = db.relationship("Empleados",secondary = Empleados_Trabajos, back_populates = "trabajos")
-    
-
 class Clientes(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     nombre_corto = db.Column(db.String(150))
@@ -61,4 +50,14 @@ class Tematicas(db.Model):
     abreviatura_tematica = db.Column(db.String(50))
     nombre_tematica = db.Column(db.String(150))
     trabajos = db.relationship('Trabajos')
-                            
+
+class Trabajos(db.Model,Base):
+    id = db.Column(db.Integer,primary_key = True)
+    nombre_trabajo = db.Column(db.String(400))
+    localizacion = db.Column(db.String(150))
+    id_tipologia = db.Column(db.Integer, db.ForeignKey('tipologias.id')) #SQL guarda la tabla en minúsculas por defecto y en foreign key hay que escribir el nombre en minúsculas pero en las relaciones en mayúsculas
+    id_tematica = db.Column(db.Integer, db.ForeignKey('tematicas.id'))
+    id_cliente = db.Column(db.Integer, db.ForeignKey('clientes.id'))
+    fecha_inicio = db.Column(db.DateTime(timezone = True),default = func.now())#para que no pete que ponga la actual
+    fecha_final =  db.Column(db.DateTime(timezone = True),default = func.now())
+    empleados = db.relationship("Empleados",secondary = Empleados_Trabajos, back_populates = "trabajos")                            
