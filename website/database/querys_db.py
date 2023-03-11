@@ -1,5 +1,5 @@
 from .. import db
-from ..models import Empleados_Trabajos, Usuarios, Empleados, Trabajos, Clientes, Tipologias, Tematicas
+from ..models import Usuarios, Empleados, Trabajos, Clientes, Tipologias, Tematicas
 from werkzeug.security import generate_password_hash
 
 def insert_usuarios(password, email, admin):    #accion_tabla
@@ -12,7 +12,7 @@ def insert_usuarios(password, email, admin):    #accion_tabla
                 ADMIN --> BOOL\n
                 
             OUTPUT
-                TRUE --> SUCCESFULL\n
+                NUEVO USUARIO CREADO --> SUCCESFULL\n
                 FALSE --> SOMETHING GO WRONG
     """
     try:
@@ -26,7 +26,7 @@ def insert_usuarios(password, email, admin):    #accion_tabla
         db.session.commit()
         #insertamos en la tabla con la estructura de con los parámetros
 
-        return True
+        return nuevo_usuario
     except:
 
         return False

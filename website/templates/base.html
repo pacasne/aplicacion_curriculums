@@ -35,11 +35,24 @@
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                   <div class="marcadores">
-                    <a class="btn btn-outline-success my-2 my-sm-0" id="signup" href="\signup">REGISTRARSE</a>
-                    <a class="btn btn-outline-success my-2 my-sm-0" id="login" href="">LOGIN</a>
+                    {% if User_register.is_authenticated %}
                     <a class="btn btn-outline-success my-2 my-sm-0" id="logout" href="">CERRAR SESIÓN</a>
+                    {%else%}
+                    <a class="btn btn-outline-success my-2 my-sm-0" id="login" href="\login">LOGIN</a>
+                    <a class="btn btn-outline-success my-2 my-sm-0" id="signup" href="\signup">REGISTRARSE</a>
+                    {% endif%}
                   </div>
                 </li>
+                {% if User_register.is_authenticated %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 10px;">
+                    CONFIGURACIÓN
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="btn btn-outline-success my-2 my-sm-0" id="modification" href="\modification">MODIFICAR EMAIL</a>
+                  </div>
+                </li>
+                {% endif%}
               </ul>
             </div>
           </div>

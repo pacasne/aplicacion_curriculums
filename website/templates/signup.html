@@ -56,10 +56,10 @@
 				<label for="administrador">Administrador </label>
       <br /><br>
       <button type="submit" class="btn btn-primary">Submit</button>
-      {% if  resultado %}
+      {% if  resultado == True %}
       <br><br>
       <h1>El usuario ha sido registrado correctamente</h1>
-      {% else %}
+      {% elif resultado == False %}
       <h1>Ha habido un problema y el usuario no ha sido registrado</h1>
       {% endif %}
     </form>

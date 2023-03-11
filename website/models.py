@@ -4,13 +4,14 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
-
+'''
 #empleado1.trabajos.append(trabajo1)
 #trabajo1.empleados.append(empleados1)
 Empleados_Trabajos = db.Table('Empleados_trabajos',Base.metadata,
     db.Column('id_Empleados', db.Integer, db.ForeignKey('Empleados.id')),
     db.Column('id_Trabajos', db.Integer, db.ForeignKey('Trabajos.id'))
 )#esta es la tabla intermedia
+'''
 
 class Usuarios(db.Model,UserMixin):
     id = db.Column(db.Integer,primary_key = True)
@@ -28,7 +29,7 @@ class Empleados(db.Model,Base):#db.Model es un método que indica que es una tab
     direccion = db.Column(db.String(150))
     ciudad = db.Column(db.String(100))
     email = db.Column(db.String(150))
-    trabajos = db.relationship("Trabajos",secondary = Empleados_Trabajos, back_populates = "empleados")# esta columna la creamos para apuntar a la tabla intermedia.
+    #trabajos = db.relationship("Trabajos",secondary = Empleados_Trabajos, back_populates = "empleados")# esta columna la creamos para apuntar a la tabla intermedia.
     
 
 class Clientes(db.Model):
@@ -60,4 +61,4 @@ class Trabajos(db.Model,Base):
     id_cliente = db.Column(db.Integer, db.ForeignKey('clientes.id'))
     fecha_inicio = db.Column(db.DateTime(timezone = True),default = func.now())#para que no pete que ponga la actual
     fecha_final =  db.Column(db.DateTime(timezone = True),default = func.now())
-    empleados = db.relationship("Empleados",secondary = Empleados_Trabajos, back_populates = "trabajos")                            
+    #empleados = db.relationship("Empleados",secondary = Empleados_Trabajos, back_populates = "trabajos")                            

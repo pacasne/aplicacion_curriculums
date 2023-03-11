@@ -49,10 +49,10 @@
       <br>
       <br /><br>
       <button type="submit" class="btn btn-primary">Modificar</button>
-      {% if  resultado %}
+      {% if  resultado == True%}
       <br><br>
       <h1>El correo ha sido registrado correctamente</h1>
-      {% else %}
+      {% elif resultado == False %}
       <h1>Ha habido un problema y el correo no ha sido modificado</h1>
       {% endif %}
     </form>
